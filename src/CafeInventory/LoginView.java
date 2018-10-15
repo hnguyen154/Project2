@@ -25,7 +25,6 @@ public class LoginView extends javax.swing.JFrame {
         int y = (int) ((screen.getHeight() - getHeight()) / 2);
         setLocation(x, y);
 
-        this.setResizable(false);
     }
 
     /**
