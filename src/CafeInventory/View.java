@@ -55,7 +55,7 @@ public class View extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/logo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("Resource/logo.png")));
 
         jTabbedPane1.setBackground(new java.awt.Color(219, 219, 219));
 
@@ -95,7 +95,7 @@ public class View extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 325, 680);
+        jPanel2.setBounds(0, 0, 69, 680);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
 

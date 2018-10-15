@@ -7,6 +7,7 @@ package CafeInventory;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.*;
 
 /**
  *
@@ -19,14 +20,44 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
-        
+
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((screen.getWidth() - getWidth()) /2);
-        int y = (int) ((screen.getHeight() -getHeight()) /2);
-        setLocation(x, y); 
-        
+        int x = (int) ((screen.getWidth() - getWidth()) / 2);
+        int y = (int) ((screen.getHeight() - getHeight()) / 2);
+        setLocation(x, y);
+
         this.setResizable(false);
     }
+
+    // member functions
+    public void addBtnResetActionListener(ActionListener a) {
+        btnReset.addActionListener(a);
+    }
+
+    public void addBtnLoginActionListener(ActionListener a) {
+        btnLogin.addActionListener(a);
+    }
+
+    public void addBtnExitActionListener(ActionListener a) {
+        btnExit.addActionListener(a);
+    }
+
+    public void setUsernameField(String text) {
+        usernameField.setText(text);
+    }
+
+    public void setPasswordField(String text) {
+        passwordField.setText(text);
+    }
+    
+    public String getUsernameField() {
+        return usernameField.getText();
+    }
+    
+    public String getPasswordField() {
+        return String.valueOf(passwordField.getPassword());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,11 +71,11 @@ public class LoginView extends javax.swing.JFrame {
         label4 = new java.awt.Label();
         label5 = new java.awt.Label();
         label6 = new java.awt.Label();
-        textField3 = new java.awt.TextField();
-        Login = new java.awt.Button();
-        button2 = new java.awt.Button();
-        button3 = new java.awt.Button();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        btnLogin = new java.awt.Button();
+        btnReset = new java.awt.Button();
+        btnExit = new java.awt.Button();
+        usernameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,35 +98,33 @@ public class LoginView extends javax.swing.JFrame {
         jPanel1.add(label6);
         label6.setBounds(170, 220, 110, 20);
 
-        textField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textField3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jPanel1.add(textField3);
-        textField3.setBounds(330, 150, 220, 30);
+        btnLogin.setActionCommand("Login");
+        btnLogin.setBackground(new java.awt.Color(102, 204, 255));
+        btnLogin.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
+        btnLogin.setLabel("Login");
+        btnLogin.setName("btnLogin"); // NOI18N
+        jPanel1.add(btnLogin);
+        btnLogin.setBounds(290, 290, 70, 40);
 
-        Login.setActionCommand("Login");
-        Login.setBackground(new java.awt.Color(102, 204, 255));
-        Login.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
-        Login.setLabel("Login");
-        Login.setName("Login"); // NOI18N
-        jPanel1.add(Login);
-        Login.setBounds(290, 290, 70, 40);
-        Login.getAccessibleContext().setAccessibleName("Login");
+        btnReset.setBackground(new java.awt.Color(102, 204, 255));
+        btnReset.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
+        btnReset.setLabel("Reset");
+        jPanel1.add(btnReset);
+        btnReset.setBounds(120, 290, 70, 40);
 
-        button2.setBackground(new java.awt.Color(102, 204, 255));
-        button2.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
-        button2.setLabel("Reset");
-        jPanel1.add(button2);
-        button2.setBounds(120, 290, 70, 40);
+        btnExit.setBackground(new java.awt.Color(102, 204, 255));
+        btnExit.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
+        btnExit.setLabel("Exit");
+        jPanel1.add(btnExit);
+        btnExit.setBounds(460, 290, 70, 40);
 
-        button3.setBackground(new java.awt.Color(102, 204, 255));
-        button3.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
-        button3.setLabel("Exit");
-        jPanel1.add(button3);
-        button3.setBounds(460, 290, 70, 40);
-        jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(330, 220, 220, 26);
+        usernameField.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        jPanel1.add(usernameField);
+        usernameField.setBounds(330, 150, 220, 30);
+        jPanel1.add(passwordField);
+        passwordField.setBounds(330, 220, 220, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/coffee_login.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("Resource/coffee_login.jpg")));
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 630, 419);
 
@@ -149,15 +178,15 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button Login;
-    private java.awt.Button button2;
-    private java.awt.Button button3;
+    private java.awt.Button btnExit;
+    private java.awt.Button btnLogin;
+    private java.awt.Button btnReset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private java.awt.Label label4;
     private java.awt.Label label5;
     private java.awt.Label label6;
-    private java.awt.TextField textField3;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
