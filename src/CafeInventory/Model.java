@@ -1,4 +1,3 @@
-
 package CafeInventory;
 
 public class Model {
@@ -19,4 +18,3 @@ public class Model {
     }
     
 }
-
