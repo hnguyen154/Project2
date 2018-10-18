@@ -6,28 +6,31 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Database {
-   
-    private String createTable = "", insertString = ""; 
-    public String table = "";
-    public String columnHeader = "";
-    private Model model = new Model();
     
-    //Read method
-    public void Read(){
-        
-        Connection con = null;
-        Statement st = null, st2;
-        ResultSet rs = null;
+    Connection con = null;
+    Statement st = null, st2;
+    ResultSet rs = null;
 
-        String  jdbc_drivers = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/cafeinventory";
-        String user = "root";
-        String password = "abcd";
+    String  jdbc_drivers = "com.mysql.jdbc.Driver";
+    String url = "jdbc:mysql://localhost:3306/cafe";
+
+    //User login
+    String user = "root";
+    String password = "abcd";
+    
+    public Database(){
         
+    }
+    
+    ArrayList output = new ArrayList();
+    ArrayList line = new ArrayList();
+    //Read method
+    public ArrayList Read(String Table){
         
             try {
                 System.setProperty("jdbc.drivers", jdbc_drivers);
@@ -38,11 +41,17 @@ public class Database {
                 //Example
                     //TextBoxString = "select * from table;";
                 
-                //get a string of User input from textbox
-                rs = st.executeQuery(model.getreadString());
+                String query = "Select * from " + Table + ";";
+                rs = st.executeQuery(query);
                 while (rs.next()) {
-
-                    System.out.println(rs.getString(1) + " " + rs.getString(2) );
+                    line.clear();
+                    int id=rs.getInt("CID");
+                    String number = rs.getString(2);
+                    String description = rs.getString(3);
+                    
+                    line.add(id);line.add(number);line.add(description);
+                    
+                    output.add(line);
                 }
 
             } catch (SQLException ex) {
@@ -69,19 +78,13 @@ public class Database {
                 }
             }
              
+            return output;
     }
 
+    
+    int out = 0;
     //Create method
-    public void Create(){
-        
-        Connection con = null;
-        Statement st = null, st2;
-        ResultSet rs = null;
-
-        String  jdbc_drivers = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/stuff";
-        String user = "ahsia";
-        String password = "abcd";
+    public int Create(String Table, String stringData){
  
                 
             try {
@@ -91,17 +94,12 @@ public class Database {
 
                 /*Create table
             //example
-                createTable = "CREATE TABLE corvette"  +
-                        "(Vetted_id INT(11) NOT NULL AUTO_INCREMENT, " +
-                        " Body_Style CHAR(12), " +
-                        " PRIMARY KEY (Vetted_id))";
+                insertString = "INSERT into [table_name] values (.., .., ..);
                 */
 
-                if(!table.isEmpty()){
-                    //createTable = get string from a textbox from View class
-                    st.executeUpdate(createTable);
-                    System.out.println("Created table in database...");
-                }
+                out = st.executeUpdate("insert into " + Table + " values " + "("+ stringData + ");");
+                System.out.println("Inserted values into table in database...");
+                
 
             } catch (SQLException ex) {
                 // Logger lgr = Logger.getLogger(Version.class.getName());
@@ -126,24 +124,12 @@ public class Database {
                     //lgr.log(Level.WARNING, ex.getMessage(), ex);
                 }
             }
-        
+        return out;
     }
     
     //Delete method
-    public void Delete(){
-        Connection con = null;
-        Statement st = null, st2;
-        ResultSet rs = null;
-
-        String  jdbc_drivers = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/stuff";
-        String user = "ahsia";
-        String password = "abcd";
+    public void Delete(String Table, String colu1, String data1){
         
-
-                //Example
-                String dropTable="DROP TABLE IF EXISTS " + table;
-
             try {
                 System.setProperty("jdbc.drivers", jdbc_drivers);
 
@@ -151,11 +137,10 @@ public class Database {
                 st = con.createStatement();
 
                 //Delete table
-                if(!table.isEmpty()){
-                    //dropTable = get String from textbox from View class
-                    st.executeUpdate(dropTable);
-                    System.out.println("Deleted table in database...");
-                }
+                String dropTable="delete from " + Table + " WHERE " + colu1 + " = " + data1;
+                st.executeUpdate(dropTable);
+                System.out.println("Deleted table in database...");
+                
 
             } catch (SQLException ex) {
                 // Logger lgr = Logger.getLogger(Version.class.getName());
@@ -184,19 +169,8 @@ public class Database {
     
     
     //Update method
-    public void Update(){
-        Connection con = null;
-        Statement st = null, st2;
-        ResultSet rs = null;
-
-        String  jdbc_drivers = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/stuff";
-        String user = "ahsia";
-        String password = "abcd";
-       
-
-                //Example
-                String updateTable = "UPDATE pet SET NULL = 'Hello' WHERE id = 3;";
+    public void Update(String Table, String colu1, String data1, String colu2, String data2){
+          
                 
             try {
                 System.setProperty("jdbc.drivers", jdbc_drivers);
@@ -204,12 +178,11 @@ public class Database {
                 con = DriverManager.getConnection(url, user, password);
                 st = con.createStatement();
 
-                //Delete table
-                if(!table.isEmpty()){
-                    //updateTable = get String from a textbox from View class
-                    st.executeUpdate(updateTable);
-                    System.out.println("Updated table in database...");
-                }
+
+                String updateTable = "UPDATE " + Table +" SET " + colu1 + " = " + data1 + " WHERE " + colu2 + " = " + data2 + ";";
+                st.executeUpdate(updateTable);
+                System.out.println("Updated table in database...");
+                
 
             } catch (SQLException ex) {
                 // Logger lgr = Logger.getLogger(Version.class.getName());
