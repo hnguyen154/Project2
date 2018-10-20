@@ -37,50 +37,56 @@ public class LoginView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        button3 = new java.awt.Button();
-        textField3 = new java.awt.TextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
-        button2 = new java.awt.Button();
+        LoginSystem = new javax.swing.JLabel();
+        Username = new javax.swing.JLabel();
+        Password = new javax.swing.JLabel();
+        NameInput = new java.awt.TextField();
+        PassInput = new javax.swing.JPasswordField();
+        Exit = new java.awt.Button();
+        Reset = new java.awt.Button();
         Login = new java.awt.Button();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        BackgroundPicture = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 102, 102));
-        jLabel3.setText("PASSWORD");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(260, 210, 106, 22);
+        LoginSystem.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        LoginSystem.setForeground(new java.awt.Color(255, 255, 255));
+        LoginSystem.setText("LOGIN SYSTEM");
+        jPanel1.add(LoginSystem);
+        LoginSystem.setBounds(310, 50, 278, 44);
 
-        button3.setBackground(new java.awt.Color(102, 204, 255));
-        button3.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
-        button3.setLabel("Exit");
-        jPanel1.add(button3);
-        button3.setBounds(470, 320, 70, 30);
+        Username.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Username.setForeground(new java.awt.Color(255, 102, 102));
+        Username.setText("USERNAME");
+        jPanel1.add(Username);
+        Username.setBounds(260, 150, 101, 30);
 
-        textField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textField3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jPanel1.add(textField3);
-        textField3.setBounds(380, 150, 200, 30);
-        jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(380, 200, 200, 30);
+        Password.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Password.setForeground(new java.awt.Color(255, 102, 102));
+        Password.setText("PASSWORD");
+        jPanel1.add(Password);
+        Password.setBounds(260, 210, 106, 22);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 102, 102));
-        jLabel2.setText("USERNAME");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(260, 150, 101, 30);
+        NameInput.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        NameInput.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jPanel1.add(NameInput);
+        NameInput.setBounds(380, 150, 200, 30);
+        jPanel1.add(PassInput);
+        PassInput.setBounds(380, 200, 200, 30);
 
-        button2.setBackground(new java.awt.Color(102, 204, 255));
-        button2.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
-        button2.setLabel("Reset");
-        jPanel1.add(button2);
-        button2.setBounds(360, 320, 64, 30);
+        Exit.setBackground(new java.awt.Color(102, 204, 255));
+        Exit.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
+        Exit.setLabel("Exit");
+        jPanel1.add(Exit);
+        Exit.setBounds(470, 320, 70, 30);
+
+        Reset.setBackground(new java.awt.Color(102, 204, 255));
+        Reset.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
+        Reset.setLabel("Reset");
+        jPanel1.add(Reset);
+        Reset.setBounds(360, 320, 64, 30);
 
         Login.setActionCommand("Login");
         Login.setBackground(new java.awt.Color(102, 204, 255));
@@ -90,17 +96,11 @@ public class LoginView extends javax.swing.JFrame {
         jPanel1.add(Login);
         Login.setBounds(250, 320, 64, 30);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("LOGIN SYSTEM");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(310, 50, 278, 44);
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CafeInventory/Resource/coffee_login.jpg"))); // NOI18N
-        jLabel5.setAlignmentX(0.5F);
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(0, 0, 650, 410);
+        BackgroundPicture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BackgroundPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CafeInventory/Resource/coffee_login.jpg"))); // NOI18N
+        BackgroundPicture.setAlignmentX(0.5F);
+        jPanel1.add(BackgroundPicture);
+        BackgroundPicture.setBounds(0, 0, 650, 410);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,15 +152,15 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BackgroundPicture;
+    private java.awt.Button Exit;
     private java.awt.Button Login;
-    private java.awt.Button button2;
-    private java.awt.Button button3;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel LoginSystem;
+    private java.awt.TextField NameInput;
+    private javax.swing.JPasswordField PassInput;
+    private javax.swing.JLabel Password;
+    private java.awt.Button Reset;
+    private javax.swing.JLabel Username;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private java.awt.TextField textField3;
     // End of variables declaration//GEN-END:variables
 }
