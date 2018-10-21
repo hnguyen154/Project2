@@ -1,16 +1,20 @@
-package CafeInventory;
+package CafeInventory.Views;
 
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /* Name: Anthony Hsia, Grandy Nguyen, Hao Nguyen
  * Class: CSC 4380
  * Title: Project 2 - Coffee Inventory
  * Date: October 10, 2018
  */
-
 public class View extends javax.swing.JFrame {
 
     /**
@@ -19,10 +23,10 @@ public class View extends javax.swing.JFrame {
     public View() {
         initComponents();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((screen.getWidth() - getWidth()) /2);
-        int y = (int) ((screen.getHeight() -getHeight()) /2);
-        setLocation(x, y); 
-             
+        int x = (int) ((screen.getWidth() - getWidth()) / 2);
+        int y = (int) ((screen.getHeight() - getHeight()) / 2);
+        setLocation(x, y);
+
         ResultTitle.setIcon(new ImageIcon(new ImageIcon("logo.png").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
     }
 
@@ -45,9 +49,9 @@ public class View extends javax.swing.JFrame {
         ResultPane = new javax.swing.JLayeredPane();
         ResultTitle = new javax.swing.JLabel();
         NameResultField = new javax.swing.JTextField();
-        CodeResultFIeld = new javax.swing.JTextField();
+        CodeResultField = new javax.swing.JTextField();
         PriceResultField = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        StockResultField = new javax.swing.JTextField();
         label4 = new java.awt.Label();
         StocksTitle = new java.awt.Label();
         NameResultTitle = new java.awt.Label();
@@ -60,6 +64,7 @@ public class View extends javax.swing.JFrame {
         SearchTitle = new java.awt.Label();
         ItemNameTitle = new java.awt.Label();
         ItemCodeTitle = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
         AddPane = new javax.swing.JPanel();
         NameAddTitle = new java.awt.Label();
         CategoryTitle = new java.awt.Label();
@@ -89,13 +94,13 @@ public class View extends javax.swing.JFrame {
         IDField = new java.awt.TextField();
         PhoneNumberField = new java.awt.TextField();
         AddressField = new java.awt.TextField();
-        AddBtn = new javax.swing.JButton();
+        AddCustomerBtn = new javax.swing.JButton();
         ResetCustomerBtn = new javax.swing.JButton();
         CompanyName = new javax.swing.JLabel();
         AgentNameField = new java.awt.TextField();
         ProviderPane = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ProviderTable = new javax.swing.JTable();
         SearchCustomerBtn = new javax.swing.JButton();
         SortBy = new javax.swing.JLabel();
         SearchBy = new javax.swing.JLabel();
@@ -185,13 +190,18 @@ public class View extends javax.swing.JFrame {
 
         NameResultField.setEditable(false);
         NameResultField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        NameResultField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameResultFieldActionPerformed(evt);
+            }
+        });
         ResultPane.add(NameResultField);
-        NameResultField.setBounds(240, 90, 205, 26);
+        NameResultField.setBounds(240, 90, 205, 20);
 
-        CodeResultFIeld.setEditable(false);
-        CodeResultFIeld.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ResultPane.add(CodeResultFIeld);
-        CodeResultFIeld.setBounds(240, 160, 205, 26);
+        CodeResultField.setEditable(false);
+        CodeResultField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ResultPane.add(CodeResultField);
+        CodeResultField.setBounds(240, 160, 205, 20);
 
         PriceResultField.setEditable(false);
         PriceResultField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -201,12 +211,17 @@ public class View extends javax.swing.JFrame {
             }
         });
         ResultPane.add(PriceResultField);
-        PriceResultField.setBounds(240, 230, 205, 26);
+        PriceResultField.setBounds(240, 230, 205, 20);
 
-        jTextField8.setEditable(false);
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ResultPane.add(jTextField8);
-        jTextField8.setBounds(240, 300, 205, 26);
+        StockResultField.setEditable(false);
+        StockResultField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        StockResultField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StockResultFieldActionPerformed(evt);
+            }
+        });
+        ResultPane.add(StockResultField);
+        StockResultField.setBounds(240, 300, 205, 20);
 
         label4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label4.setName(""); // NOI18N
@@ -238,7 +253,7 @@ public class View extends javax.swing.JFrame {
             }
         });
         ResultPane.add(UnitResultField);
-        UnitResultField.setBounds(240, 370, 205, 26);
+        UnitResultField.setBounds(240, 370, 205, 20);
 
         UnitResultTitle.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         UnitResultTitle.setName(""); // NOI18N
@@ -250,6 +265,16 @@ public class View extends javax.swing.JFrame {
         ResultPane.setBounds(450, 0, 530, 480);
 
         NameField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        NameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                NameFieldFocusGained(evt);
+            }
+        });
+        NameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameFieldActionPerformed(evt);
+            }
+        });
         SearchPane.add(NameField);
         NameField.setBounds(150, 160, 250, 25);
 
@@ -259,7 +284,7 @@ public class View extends javax.swing.JFrame {
 
         SearchBtn.setText("Search");
         SearchPane.add(SearchBtn);
-        SearchBtn.setBounds(100, 320, 182, 29);
+        SearchBtn.setBounds(100, 320, 182, 23);
 
         SearchTitle.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
         SearchTitle.setText("Search");
@@ -275,6 +300,11 @@ public class View extends javax.swing.JFrame {
         ItemCodeTitle.setText("Item Code");
         SearchPane.add(ItemCodeTitle);
         ItemCodeTitle.setBounds(30, 230, 80, 26);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setText("or");
+        SearchPane.add(jLabel1);
+        jLabel1.setBounds(260, 200, 34, 14);
 
         TabbedPane.addTab("Search", SearchPane);
 
@@ -301,21 +331,16 @@ public class View extends javax.swing.JFrame {
         PriceAddTitle.setBounds(580, 70, 45, 26);
 
         ResetFieldBtn.setText("Reset");
-        ResetFieldBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResetFieldBtnActionPerformed(evt);
-            }
-        });
         AddPane.add(ResetFieldBtn);
-        ResetFieldBtn.setBounds(461, 340, 71, 29);
+        ResetFieldBtn.setBounds(461, 340, 61, 23);
 
         UpdateBtn.setText("Update");
         AddPane.add(UpdateBtn);
-        UpdateBtn.setBounds(618, 340, 83, 29);
+        UpdateBtn.setBounds(618, 340, 67, 23);
 
         DeleteItemBtn.setText("Delete");
         AddPane.add(DeleteItemBtn);
-        DeleteItemBtn.setBounds(289, 340, 77, 29);
+        DeleteItemBtn.setBounds(289, 340, 63, 23);
 
         NameAddField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         AddPane.add(NameAddField);
@@ -350,23 +375,20 @@ public class View extends javax.swing.JFrame {
 
         UnitField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "LB", "Oz", "Gal", "FL OZ" }));
         AddPane.add(UnitField);
-        UnitField.setBounds(650, 250, 200, 26);
+        UnitField.setBounds(650, 250, 200, 20);
 
         CategoryField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Sweet", "Coffee", "Nut", "Dairy" }));
         AddPane.add(CategoryField);
-        CategoryField.setBounds(230, 250, 200, 26);
+        CategoryField.setBounds(230, 250, 200, 20);
 
         TabbedPane.addTab("Add/Delete an Item", AddPane);
 
         InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(InventoryTable);
@@ -402,7 +424,7 @@ public class View extends javax.swing.JFrame {
 
         AddressField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
 
-        AddBtn.setText("Add Customer");
+        AddCustomerBtn.setText("Add Customer");
 
         ResetCustomerBtn.setText("Reset");
 
@@ -429,7 +451,7 @@ public class View extends javax.swing.JFrame {
                             .addComponent(ResetCustomerBtn)
                             .addComponent(PhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(99, 99, 99)
-                        .addComponent(AddBtn))
+                        .addComponent(AddCustomerBtn))
                     .addGroup(CustomerPaneLayout.createSequentialGroup()
                         .addGroup(CustomerPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(IDField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,14 +490,14 @@ public class View extends javax.swing.JFrame {
                     .addComponent(PhoneNumberField, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addGap(61, 61, 61)
                 .addGroup(CustomerPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddBtn)
+                    .addComponent(AddCustomerBtn)
                     .addComponent(ResetCustomerBtn))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("Add A Provider", CustomerPane);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -486,7 +508,7 @@ public class View extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(ProviderTable);
 
         SearchCustomerBtn.setText("Search");
 
@@ -550,51 +572,51 @@ public class View extends javax.swing.JFrame {
 
         ItemOrderTitle.setText("Item Name");
         OrderingPane.add(ItemOrderTitle);
-        ItemOrderTitle.setBounds(97, 69, 80, 20);
+        ItemOrderTitle.setBounds(97, 69, 80, 14);
 
         CodeOrderTitle.setText("Item Code");
         OrderingPane.add(CodeOrderTitle);
-        CodeOrderTitle.setBounds(97, 130, 80, 20);
+        CodeOrderTitle.setBounds(97, 130, 80, 14);
 
         ProvideName.setText("Provider's Name");
         OrderingPane.add(ProvideName);
-        ProvideName.setBounds(57, 197, 120, 20);
+        ProvideName.setBounds(57, 197, 120, 14);
 
         ProviderID.setText("Provider's ID");
         OrderingPane.add(ProviderID);
-        ProviderID.setBounds(77, 267, 100, 20);
+        ProviderID.setBounds(77, 267, 100, 14);
 
         InvoiceTitle.setText("Invoice Number");
         OrderingPane.add(InvoiceTitle);
-        InvoiceTitle.setBounds(60, 330, 120, 20);
+        InvoiceTitle.setBounds(60, 330, 120, 14);
 
         NoItem.setText("Number of Items");
         OrderingPane.add(NoItem);
-        NoItem.setBounds(491, 69, 130, 20);
+        NoItem.setBounds(491, 69, 130, 14);
 
         OrderPrice.setText("Price per Item");
         OrderingPane.add(OrderPrice);
-        OrderPrice.setBounds(510, 130, 100, 20);
+        OrderPrice.setBounds(510, 130, 100, 14);
 
         TotalPrice.setText("Total");
         OrderingPane.add(TotalPrice);
-        TotalPrice.setBounds(570, 270, 40, 20);
+        TotalPrice.setBounds(570, 270, 40, 14);
 
         CategoryOrder.setText("Category");
         OrderingPane.add(CategoryOrder);
-        CategoryOrder.setBounds(540, 200, 70, 20);
+        CategoryOrder.setBounds(540, 200, 70, 14);
 
         ResetOrder.setText("Reset");
         OrderingPane.add(ResetOrder);
-        ResetOrder.setBounds(530, 370, 71, 29);
+        ResetOrder.setBounds(530, 370, 61, 23);
 
         OrderingBtn.setText("Place An Order");
         OrderingPane.add(OrderingBtn);
-        OrderingBtn.setBounds(660, 370, 160, 29);
+        OrderingBtn.setBounds(660, 370, 160, 23);
 
         NoUnit.setText("Unit");
         OrderingPane.add(NoUnit);
-        NoUnit.setBounds(770, 70, 51, 20);
+        NoUnit.setBounds(770, 70, 51, 14);
 
         NoItemOrder.setEditable(false);
         NoItemOrder.setEnabled(false);
@@ -634,11 +656,11 @@ public class View extends javax.swing.JFrame {
 
         UnitOrderField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "LB", "Oz", "Gal", "FL OZ" }));
         OrderingPane.add(UnitOrderField);
-        UnitOrderField.setBounds(840, 70, 100, 26);
+        UnitOrderField.setBounds(840, 70, 100, 20);
 
         CategoryOrderField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Sweet", "Coffee", "Nut", "Dairy" }));
         OrderingPane.add(CategoryOrderField);
-        CategoryOrderField.setBounds(640, 200, 100, 26);
+        CategoryOrderField.setBounds(640, 200, 100, 20);
 
         TabbedPane.addTab("Place an Order", OrderingPane);
 
@@ -754,10 +776,6 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ResetFieldBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetFieldBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ResetFieldBtnActionPerformed
-
     private void PriceResultFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PriceResultFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PriceResultFieldActionPerformed
@@ -770,6 +788,22 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CodeAddField1ActionPerformed
 
+    private void NameResultFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameResultFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameResultFieldActionPerformed
+
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameFieldActionPerformed
+
+    private void StockResultFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StockResultFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StockResultFieldActionPerformed
+
+    private void NameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NameFieldFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameFieldFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -777,7 +811,7 @@ public class View extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -805,8 +839,185 @@ public class View extends javax.swing.JFrame {
         });
     }
 
+    public String getNameAddField() {
+        return NameAddField.getText();
+    }
+
+    public void setNameAddField(String text) {
+        NameAddField.setText(text);
+    }
+
+    public String getStockAddField() {
+        return StocksAddField.getText();
+    }
+
+    public void setStockAddField(String text) {
+        StocksAddField.setText(text);
+    }
+
+    public String getPriceAddField() {
+        return PriceAddField.getText();
+    }
+
+    public void setPriceAddField(String text) {
+        PriceAddField.setText(text);
+    }
+
+    public String getCodeAddField() {
+        return CodeAddField1.getText();
+    }
+
+    public void setCodeAddField(String text) {
+        CodeAddField1.setText(text);
+    }
+
+    public String getCategoryField() {
+        return CategoryField.getSelectedItem().toString();
+    }
+
+    public void setCategoryField() {
+        CategoryField.setSelectedIndex(0);
+    }
+
+    public String getUnitField() {
+        return UnitField.getSelectedItem().toString();
+    }
+
+    public void setUnitField() {
+        UnitField.setSelectedIndex(0);
+    }
+
+    public void addDeleteItemBtnListener(ActionListener a) {
+        DeleteItemBtn.addActionListener(a);
+    }
+
+    public void addUpdateBtnListener(ActionListener a) {
+        UpdateBtn.addActionListener(a);
+    }
+
+    public void addResetBtnListener(ActionListener a) {
+        ResetFieldBtn.addActionListener(a);
+    }
+
+    public void getInventoryTableModel(TableModel model) {
+        InventoryTable.setModel(model);
+    }
+
+    public void setInventoryTableModel(TableModel model) {
+        InventoryTable.setModel(model);
+    }
+
+    // search tab
+    public void addSearchBtnListener(ActionListener a) {
+        SearchBtn.addActionListener(a);
+    }
+
+    public String getNameField() {
+        return NameField.getText();
+    }
+
+    public void setNameField(String s) {
+        NameField.setText(s);
+    }
+
+    public void addNameFieldListener(FocusListener f) {
+        NameField.addFocusListener(f);
+    }
+
+    public String getItemCodeField() {
+        return ItemCodeField.getText();
+    }
+
+    public void setItemCodeField(String s) {
+        ItemCodeField.setText(s);
+    }
+
+    public void addItemCodeFieldListener(FocusListener f) {
+        ItemCodeField.addFocusListener(f);
+    }
+
+    public void setNameResultField(String s) {
+        NameResultField.setText(s);
+    }
+
+    public void setCodeResulField(String s) {
+        CodeResultField.setText(s);
+    }
+
+    public void setPriceResultField(String s) {
+        PriceResultField.setText(s);
+    }
+
+    public void setStockResultField(String s) {
+        StockResultField.setText(s);
+    }
+
+    public void setUnitResultField(String s) {
+        UnitResultField.setText(s);
+    }
+
+    // provider tab
+    public void addResetCustomerBtnListener(ActionListener a) {
+        ResetCustomerBtn.addActionListener(a);
+    }
+
+    public void addAddCustomerBtnListener(ActionListener a) {
+        AddCustomerBtn.addActionListener(a);
+    }
+
+    public String getAgentNameField() {
+        return AgentNameField.getText();
+    }
+
+    public void setAgentNameField(String s) {
+        AgentNameField.setText(s);
+    }
+
+    public String getIDField() {
+        return IDField.getText();
+    }
+
+    public void setIDField(String s) {
+        IDField.setText(s);
+    }
+
+    public String getAddressField() {
+        return AddressField.getText();
+    }
+
+    public void setAddressField(String s) {
+        AddressField.setText(s);
+    }
+
+    public String getCompanyNameField() {
+        return CompanyNameField.getText();
+    }
+
+    public void setCompanyNameField(String s) {
+        CompanyNameField.setText(s);
+    }
+
+    public String getPhoneNumberField() {
+        return PhoneNumberField.getText();
+    }
+
+    public void setPhoneNumberField(String s) {
+        PhoneNumberField.setText(s);
+    }
+
+    public void setProviderTableModel(TableModel model) {
+        ProviderTable.setModel(model);
+    }
+    
+    
+    // Menu Bar
+    
+    public void addLogOutListener(ActionListener a) {
+        LogOut.addActionListener(a);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddBtn;
+    private javax.swing.JButton AddCustomerBtn;
     private javax.swing.JPanel AddPane;
     private javax.swing.JLabel Address;
     private java.awt.TextField AddressField;
@@ -821,7 +1032,7 @@ public class View extends javax.swing.JFrame {
     private java.awt.Label CodeAddTitle1;
     private java.awt.TextField CodeOrderField;
     private javax.swing.JLabel CodeOrderTitle;
-    private javax.swing.JTextField CodeResultFIeld;
+    private javax.swing.JTextField CodeResultField;
     private java.awt.Label CodeResultTitle;
     private javax.swing.JLabel CompanyName;
     private java.awt.TextField CompanyNameField;
@@ -865,6 +1076,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel ProviderID;
     private java.awt.TextField ProviderIDField;
     private javax.swing.JPanel ProviderPane;
+    private javax.swing.JTable ProviderTable;
     private java.awt.Button RecallBtn;
     private javax.swing.JTextField RecallField;
     private javax.swing.JButton ResetCustomerBtn;
@@ -885,6 +1097,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> SortByField;
     private javax.swing.JLabel SortByOrder;
     private javax.swing.JComboBox<String> SortTrans;
+    private javax.swing.JTextField StockResultField;
     private java.awt.TextField StocksAddField;
     private java.awt.Label StocksAddTitle;
     private java.awt.Label StocksTitle;
@@ -900,13 +1113,12 @@ public class View extends javax.swing.JFrame {
     private java.awt.Label UnitResultTitle;
     private java.awt.Label UnitTitle;
     private javax.swing.JButton UpdateBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField8;
     private java.awt.Label label4;
     // End of variables declaration//GEN-END:variables
 }

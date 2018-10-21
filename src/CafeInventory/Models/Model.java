@@ -1,6 +1,8 @@
-package CafeInventory;
+package CafeInventory.Models;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Model {
 
@@ -11,9 +13,19 @@ public class Model {
             updateString, updateCol1String, updateData1String, updateCol2String, updateData2String;
     int out;
     
+    boolean searchName = true;
+    
     //Constructor
     public Model(){
         
+    }
+    
+    public void setSearchName(boolean b) {
+        searchName = b;
+    }
+    
+    public boolean getSearchName() {
+        return searchName;
     }
     
     //String to read a table on database
@@ -31,7 +43,12 @@ public class Model {
         this.insertdataString = insertdataString;
     }
     public int getinsertString(){
-        return db.Create(insertString, insertdataString);
+        try {
+            return db.Create(insertString, insertdataString);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
     
     //String to delete a row from a table on database
@@ -55,5 +72,7 @@ public class Model {
     public void getupdateString(){
         db.Update(updateString, updateCol1String, updateData1String, updateCol2String, updateData2String);
     }
+    
+    
     
 }

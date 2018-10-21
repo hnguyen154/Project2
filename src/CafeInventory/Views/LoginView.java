@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CafeInventory;
+package CafeInventory.Views;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -25,6 +26,34 @@ public class LoginView extends javax.swing.JFrame {
         int y = (int) ((screen.getHeight() - getHeight()) / 2);
         setLocation(x, y);
 
+    }
+    
+    public String getUsername() {
+        return NameInput.getText();
+    }
+    
+    public void setUsername(String text) {
+        NameInput.setText(text);
+    }
+    
+    public String getPassword() {
+        return String.valueOf(PassInput.getPassword());
+    }
+    
+    public void setPassword(String text) {
+        PassInput.setText(text);
+    }
+    
+    public void addExitActionListener(ActionListener a) {
+        Exit.addActionListener(a);
+    }
+    
+    public void addLoginActionListener(ActionListener a) {
+        Login.addActionListener(a);
+    }
+    
+    public void addResetActionListener(ActionListener a) {
+        Reset.addActionListener(a);
     }
 
     /**
