@@ -86,6 +86,9 @@ public class View extends javax.swing.JFrame {
         ListPane = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         InventoryTable = new javax.swing.JTable();
+        TransactionPane = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        itemDes = new javax.swing.JTable();
         CustomerPane = new javax.swing.JPanel();
         AgentName = new javax.swing.JLabel();
         AgentID = new javax.swing.JLabel();
@@ -103,21 +106,6 @@ public class View extends javax.swing.JFrame {
         ProviderPane = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ProviderTable = new javax.swing.JTable();
-        SearchCustomerBtn = new javax.swing.JButton();
-        SortBy = new javax.swing.JLabel();
-        SearchBy = new javax.swing.JLabel();
-        SearchField = new java.awt.TextField();
-        SearchByField = new javax.swing.JComboBox<>();
-        SortByField = new javax.swing.JComboBox<>();
-        TransactionPane = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        itemDes = new javax.swing.JTable();
-        SortByOrder = new javax.swing.JLabel();
-        SearchByOrder = new javax.swing.JLabel();
-        RecallField = new javax.swing.JTextField();
-        RecallBtn = new java.awt.Button();
-        SortTrans = new javax.swing.JComboBox<>();
-        SearchTrans = new javax.swing.JComboBox<>();
         MenuBar = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
         LogOut = new javax.swing.JMenuItem();
@@ -397,6 +385,32 @@ public class View extends javax.swing.JFrame {
 
         TabbedPane.addTab("List of Items", ListPane);
 
+        itemDes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(itemDes);
+
+        javax.swing.GroupLayout TransactionPaneLayout = new javax.swing.GroupLayout(TransactionPane);
+        TransactionPane.setLayout(TransactionPaneLayout);
+        TransactionPaneLayout.setHorizontalGroup(
+            TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
+        );
+        TransactionPaneLayout.setVerticalGroup(
+            TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+        );
+
+        TabbedPane.addTab("Item Description", TransactionPane);
+
         AgentName.setText("First and Last Name");
 
         AgentID.setText("ID");
@@ -500,135 +514,18 @@ public class View extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(ProviderTable);
 
-        SearchCustomerBtn.setText("Search");
-
-        SortBy.setText("Sort By:");
-
-        SearchBy.setText("Search By:");
-
-        SearchField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-
-        SearchByField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Name", "Company Name", "ID", "Address", "Phone #" }));
-
-        SortByField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Name", "Company Name", "ID", "Address", "Phone #" }));
-
         javax.swing.GroupLayout ProviderPaneLayout = new javax.swing.GroupLayout(ProviderPane);
         ProviderPane.setLayout(ProviderPaneLayout);
         ProviderPaneLayout.setHorizontalGroup(
             ProviderPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ProviderPaneLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(ProviderPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProviderPaneLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(SortBy)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SortByField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ProviderPaneLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(ProviderPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ProviderPaneLayout.createSequentialGroup()
-                                .addComponent(SearchBy)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SearchByField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(ProviderPaneLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(SearchCustomerBtn)))
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
         );
         ProviderPaneLayout.setVerticalGroup(
             ProviderPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ProviderPaneLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(ProviderPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SortBy)
-                    .addComponent(SortByField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(ProviderPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchBy)
-                    .addComponent(SearchByField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(SearchCustomerBtn)
-                .addGap(155, 155, 155))
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         TabbedPane.addTab("List of Providers", ProviderPane);
-
-        itemDes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(itemDes);
-
-        SortByOrder.setText("Sort By:");
-
-        SearchByOrder.setText("Search By:");
-
-        RecallBtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        RecallBtn.setLabel("Recall");
-
-        SortTrans.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Provider's Name", "Provider's ID", "Item Name", "Item Code", "Invoice #" }));
-
-        SearchTrans.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Provider's Name", "Provider's ID", "Item Name", "Item Code", "Invoice #" }));
-
-        javax.swing.GroupLayout TransactionPaneLayout = new javax.swing.GroupLayout(TransactionPane);
-        TransactionPane.setLayout(TransactionPaneLayout);
-        TransactionPaneLayout.setHorizontalGroup(
-            TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TransactionPaneLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TransactionPaneLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(RecallField, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(TransactionPaneLayout.createSequentialGroup()
-                                    .addComponent(SortByOrder)
-                                    .addGap(45, 45, 45)
-                                    .addGroup(TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(SearchTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(SortTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(TransactionPaneLayout.createSequentialGroup()
-                                .addComponent(SearchByOrder)
-                                .addGap(187, 187, 187)))
-                        .addGap(0, 48, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransactionPaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RecallBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(130, 130, 130))))
-        );
-        TransactionPaneLayout.setVerticalGroup(
-            TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-            .addGroup(TransactionPaneLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SortByOrder)
-                    .addComponent(SortTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(TransactionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchByOrder)
-                    .addComponent(SearchTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addComponent(RecallField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(RecallBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        TabbedPane.addTab("Item Description", TransactionPane);
 
         javax.swing.GroupLayout ContentPaneLayout = new javax.swing.GroupLayout(ContentPane);
         ContentPane.setLayout(ContentPaneLayout);
@@ -972,25 +869,13 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextField PriceResultField;
     private javax.swing.JPanel ProviderPane;
     private javax.swing.JTable ProviderTable;
-    private java.awt.Button RecallBtn;
-    private javax.swing.JTextField RecallField;
     private javax.swing.JButton ResetCustomerBtn;
     private javax.swing.JButton ResetFieldBtn;
     private javax.swing.JLayeredPane ResultPane;
     private javax.swing.JLabel ResultTitle;
     private javax.swing.JButton SearchBtn;
-    private javax.swing.JLabel SearchBy;
-    private javax.swing.JComboBox<String> SearchByField;
-    private javax.swing.JLabel SearchByOrder;
-    private javax.swing.JButton SearchCustomerBtn;
-    private java.awt.TextField SearchField;
     private javax.swing.JPanel SearchPane;
     private java.awt.Label SearchTitle;
-    private javax.swing.JComboBox<String> SearchTrans;
-    private javax.swing.JLabel SortBy;
-    private javax.swing.JComboBox<String> SortByField;
-    private javax.swing.JLabel SortByOrder;
-    private javax.swing.JComboBox<String> SortTrans;
     private javax.swing.JTextField StockResultField;
     private java.awt.TextField StocksAddField;
     private java.awt.Label StocksAddTitle;
