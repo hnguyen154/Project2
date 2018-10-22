@@ -26,10 +26,12 @@ public class ViewController {
 
     public void init(View view, Model model, Database db) throws SQLException {
         view.setVisible(true);
+        view.setTitle("Coffee Inventory");
 
         // Initial db view
         db.updateInventoryTable(view);
         db.updateProviderTable(view);
+        db.updateItemDescriptionTable(view);
         
         view.addLogOutListener(new ActionListener() {
             @Override
@@ -44,9 +46,11 @@ public class ViewController {
         view.addDeleteItemBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                db.Delete("Items", "code", view.getCodeAddField());
+                db.DeleteItem("Items", "code", view.getCodeAddField());
+                db.DeleteDescription("ItemDescription", "name", view.getNameAddField());
                 try {
                     db.updateInventoryTable(view);
+                    db.updateItemDescriptionTable(view);
                     JOptionPane.showMessageDialog(view, "Item deleted successfully.");
                     
                 } catch (SQLException ex) {
@@ -62,7 +66,9 @@ public class ViewController {
 
                 try {
                     db.AddItem(view.getNameAddField(), view.getCodeAddField(), view.getPriceAddField(), view.getStockAddField(), view.getCategoryField(), view.getUnitField());
+                    db.AddItemDes(view.getNameAddField(), view.getItemDescriptionField());
                     db.updateInventoryTable(view);
+                    db.updateItemDescriptionTable(view);
                     JOptionPane.showMessageDialog(view, "Item added successfully.");
 
                 } catch (ClassNotFoundException ex) {

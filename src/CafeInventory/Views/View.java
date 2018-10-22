@@ -81,6 +81,8 @@ public class View extends javax.swing.JFrame {
         UnitTitle = new java.awt.Label();
         UnitField = new javax.swing.JComboBox<>();
         CategoryField = new javax.swing.JComboBox<>();
+        ItemDescription = new java.awt.Label();
+        ItemDescriptionField = new java.awt.TextField();
         ListPane = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         InventoryTable = new javax.swing.JTable();
@@ -107,32 +109,9 @@ public class View extends javax.swing.JFrame {
         SearchField = new java.awt.TextField();
         SearchByField = new javax.swing.JComboBox<>();
         SortByField = new javax.swing.JComboBox<>();
-        OrderingPane = new javax.swing.JPanel();
-        ItemOrderTitle = new javax.swing.JLabel();
-        CodeOrderTitle = new javax.swing.JLabel();
-        ProvideName = new javax.swing.JLabel();
-        ProviderID = new javax.swing.JLabel();
-        InvoiceTitle = new javax.swing.JLabel();
-        NoItem = new javax.swing.JLabel();
-        OrderPrice = new javax.swing.JLabel();
-        TotalPrice = new javax.swing.JLabel();
-        CategoryOrder = new javax.swing.JLabel();
-        ResetOrder = new javax.swing.JButton();
-        OrderingBtn = new javax.swing.JButton();
-        NoUnit = new javax.swing.JLabel();
-        NoItemOrder = new java.awt.TextField();
-        ItemOrderField = new java.awt.TextField();
-        CodeOrderField = new java.awt.TextField();
-        ProviderField = new java.awt.TextField();
-        ProviderIDField = new java.awt.TextField();
-        InvoiceField = new java.awt.TextField();
-        TotalPriceField = new java.awt.TextField();
-        OrderPriceField = new java.awt.TextField();
-        UnitOrderField = new javax.swing.JComboBox<>();
-        CategoryOrderField = new javax.swing.JComboBox<>();
         TransactionPane = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        itemDes = new javax.swing.JTable();
         SortByOrder = new javax.swing.JLabel();
         SearchByOrder = new javax.swing.JLabel();
         RecallField = new javax.swing.JTextField();
@@ -276,15 +255,15 @@ public class View extends javax.swing.JFrame {
             }
         });
         SearchPane.add(NameField);
-        NameField.setBounds(150, 160, 250, 25);
+        NameField.setBounds(150, 160, 250, 23);
 
         ItemCodeField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         SearchPane.add(ItemCodeField);
-        ItemCodeField.setBounds(150, 230, 250, 25);
+        ItemCodeField.setBounds(150, 230, 250, 23);
 
         SearchBtn.setText("Search");
         SearchPane.add(SearchBtn);
-        SearchBtn.setBounds(100, 320, 182, 23);
+        SearchBtn.setBounds(100, 320, 182, 26);
 
         SearchTitle.setFont(new java.awt.Font("Arial Black", 0, 48)); // NOI18N
         SearchTitle.setText("Search");
@@ -332,15 +311,15 @@ public class View extends javax.swing.JFrame {
 
         ResetFieldBtn.setText("Reset");
         AddPane.add(ResetFieldBtn);
-        ResetFieldBtn.setBounds(461, 340, 61, 23);
+        ResetFieldBtn.setBounds(461, 340, 67, 26);
 
         UpdateBtn.setText("Update");
         AddPane.add(UpdateBtn);
-        UpdateBtn.setBounds(618, 340, 67, 23);
+        UpdateBtn.setBounds(618, 340, 74, 26);
 
         DeleteItemBtn.setText("Delete");
         AddPane.add(DeleteItemBtn);
-        DeleteItemBtn.setBounds(289, 340, 63, 23);
+        DeleteItemBtn.setBounds(289, 340, 70, 26);
 
         NameAddField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         AddPane.add(NameAddField);
@@ -357,7 +336,7 @@ public class View extends javax.swing.JFrame {
         CodeAddTitle1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         CodeAddTitle1.setText("Item Code");
         AddPane.add(CodeAddTitle1);
-        CodeAddTitle1.setBounds(130, 160, 85, 26);
+        CodeAddTitle1.setBounds(130, 190, 85, 26);
 
         CodeAddField1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         CodeAddField1.addActionListener(new java.awt.event.ActionListener() {
@@ -366,7 +345,7 @@ public class View extends javax.swing.JFrame {
             }
         });
         AddPane.add(CodeAddField1);
-        CodeAddField1.setBounds(230, 150, 205, 32);
+        CodeAddField1.setBounds(230, 190, 205, 32);
 
         UnitTitle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         UnitTitle.setText("Unit");
@@ -375,11 +354,21 @@ public class View extends javax.swing.JFrame {
 
         UnitField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "LB", "Oz", "Gal", "FL OZ" }));
         AddPane.add(UnitField);
-        UnitField.setBounds(650, 250, 200, 20);
+        UnitField.setBounds(650, 250, 200, 25);
 
         CategoryField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Sweet", "Coffee", "Nut", "Dairy" }));
         AddPane.add(CategoryField);
-        CategoryField.setBounds(230, 250, 200, 20);
+        CategoryField.setBounds(230, 250, 200, 25);
+
+        ItemDescription.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        ItemDescription.setName(""); // NOI18N
+        ItemDescription.setText("Item Description");
+        AddPane.add(ItemDescription);
+        ItemDescription.setBounds(90, 130, 130, 30);
+
+        ItemDescriptionField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        AddPane.add(ItemDescriptionField);
+        ItemDescriptionField.setBounds(230, 130, 205, 32);
 
         TabbedPane.addTab("Add/Delete an Item", AddPane);
 
@@ -437,7 +426,7 @@ public class View extends javax.swing.JFrame {
         CustomerPaneLayout.setHorizontalGroup(
             CustomerPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CustomerPaneLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(104, Short.MAX_VALUE)
                 .addGroup(CustomerPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(AgentID)
                     .addComponent(AgentName)
@@ -497,6 +486,7 @@ public class View extends javax.swing.JFrame {
 
         TabbedPane.addTab("Add A Provider", CustomerPane);
 
+        ProviderTable.setAutoCreateRowSorter(true);
         ProviderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -568,103 +558,7 @@ public class View extends javax.swing.JFrame {
 
         TabbedPane.addTab("List of Providers", ProviderPane);
 
-        OrderingPane.setLayout(null);
-
-        ItemOrderTitle.setText("Item Name");
-        OrderingPane.add(ItemOrderTitle);
-        ItemOrderTitle.setBounds(97, 69, 80, 14);
-
-        CodeOrderTitle.setText("Item Code");
-        OrderingPane.add(CodeOrderTitle);
-        CodeOrderTitle.setBounds(97, 130, 80, 14);
-
-        ProvideName.setText("Provider's Name");
-        OrderingPane.add(ProvideName);
-        ProvideName.setBounds(57, 197, 120, 14);
-
-        ProviderID.setText("Provider's ID");
-        OrderingPane.add(ProviderID);
-        ProviderID.setBounds(77, 267, 100, 14);
-
-        InvoiceTitle.setText("Invoice Number");
-        OrderingPane.add(InvoiceTitle);
-        InvoiceTitle.setBounds(60, 330, 120, 14);
-
-        NoItem.setText("Number of Items");
-        OrderingPane.add(NoItem);
-        NoItem.setBounds(491, 69, 130, 14);
-
-        OrderPrice.setText("Price per Item");
-        OrderingPane.add(OrderPrice);
-        OrderPrice.setBounds(510, 130, 100, 14);
-
-        TotalPrice.setText("Total");
-        OrderingPane.add(TotalPrice);
-        TotalPrice.setBounds(570, 270, 40, 14);
-
-        CategoryOrder.setText("Category");
-        OrderingPane.add(CategoryOrder);
-        CategoryOrder.setBounds(540, 200, 70, 14);
-
-        ResetOrder.setText("Reset");
-        OrderingPane.add(ResetOrder);
-        ResetOrder.setBounds(530, 370, 61, 23);
-
-        OrderingBtn.setText("Place An Order");
-        OrderingPane.add(OrderingBtn);
-        OrderingBtn.setBounds(660, 370, 160, 23);
-
-        NoUnit.setText("Unit");
-        OrderingPane.add(NoUnit);
-        NoUnit.setBounds(770, 70, 51, 14);
-
-        NoItemOrder.setEditable(false);
-        NoItemOrder.setEnabled(false);
-        NoItemOrder.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(NoItemOrder);
-        NoItemOrder.setBounds(640, 70, 80, 23);
-
-        ItemOrderField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(ItemOrderField);
-        ItemOrderField.setBounds(220, 70, 230, 23);
-
-        CodeOrderField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(CodeOrderField);
-        CodeOrderField.setBounds(220, 130, 230, 23);
-
-        ProviderField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(ProviderField);
-        ProviderField.setBounds(220, 200, 230, 23);
-
-        ProviderIDField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(ProviderIDField);
-        ProviderIDField.setBounds(220, 260, 230, 23);
-
-        InvoiceField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(InvoiceField);
-        InvoiceField.setBounds(220, 330, 230, 23);
-
-        TotalPriceField.setEditable(false);
-        TotalPriceField.setEnabled(false);
-        TotalPriceField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(TotalPriceField);
-        TotalPriceField.setBounds(640, 270, 80, 23);
-
-        OrderPriceField.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        OrderingPane.add(OrderPriceField);
-        OrderPriceField.setBounds(640, 130, 80, 23);
-
-        UnitOrderField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "LB", "Oz", "Gal", "FL OZ" }));
-        OrderingPane.add(UnitOrderField);
-        UnitOrderField.setBounds(840, 70, 100, 20);
-
-        CategoryOrderField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Any", "Sweet", "Coffee", "Nut", "Dairy" }));
-        OrderingPane.add(CategoryOrderField);
-        CategoryOrderField.setBounds(640, 200, 100, 20);
-
-        TabbedPane.addTab("Place an Order", OrderingPane);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        itemDes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -675,7 +569,7 @@ public class View extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(itemDes);
 
         SortByOrder.setText("Sort By:");
 
@@ -709,7 +603,7 @@ public class View extends javax.swing.JFrame {
                             .addGroup(TransactionPaneLayout.createSequentialGroup()
                                 .addComponent(SearchByOrder)
                                 .addGap(187, 187, 187)))
-                        .addGap(0, 34, Short.MAX_VALUE))
+                        .addGap(0, 48, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransactionPaneLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(RecallBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -734,7 +628,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        TabbedPane.addTab("List of Transactions", TransactionPane);
+        TabbedPane.addTab("Item Description", TransactionPane);
 
         javax.swing.GroupLayout ContentPaneLayout = new javax.swing.GroupLayout(ContentPane);
         ContentPane.setLayout(ContentPaneLayout);
@@ -846,6 +740,15 @@ public class View extends javax.swing.JFrame {
     public void setNameAddField(String text) {
         NameAddField.setText(text);
     }
+    
+    public String getItemDescriptionField() {
+        return ItemDescriptionField.getText();
+    }
+
+    public void setItemDescriptionField(String text) {
+        ItemDescriptionField.setText(text);
+    }
+    
 
     public String getStockAddField() {
         return StocksAddField.getText();
@@ -906,6 +809,7 @@ public class View extends javax.swing.JFrame {
     public void setInventoryTableModel(TableModel model) {
         InventoryTable.setModel(model);
     }
+    
 
     // search tab
     public void addSearchBtnListener(ActionListener a) {
@@ -1009,6 +913,14 @@ public class View extends javax.swing.JFrame {
         ProviderTable.setModel(model);
     }
     
+    //Item description
+    public void getItemDescriptionTableModel(TableModel model) {
+        itemDes.setModel(model);
+    }
+
+    public void setItemDescriptionTableModel(TableModel model) {
+        itemDes.setModel(model);
+    }
     
     // Menu Bar
     
@@ -1025,13 +937,9 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel AgentName;
     private java.awt.TextField AgentNameField;
     private javax.swing.JComboBox<String> CategoryField;
-    private javax.swing.JLabel CategoryOrder;
-    private javax.swing.JComboBox<String> CategoryOrderField;
     private java.awt.Label CategoryTitle;
     private java.awt.TextField CodeAddField1;
     private java.awt.Label CodeAddTitle1;
-    private java.awt.TextField CodeOrderField;
-    private javax.swing.JLabel CodeOrderTitle;
     private javax.swing.JTextField CodeResultField;
     private java.awt.Label CodeResultTitle;
     private javax.swing.JLabel CompanyName;
@@ -1043,13 +951,11 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JMenu File;
     private java.awt.TextField IDField;
     private javax.swing.JTable InventoryTable;
-    private java.awt.TextField InvoiceField;
-    private javax.swing.JLabel InvoiceTitle;
     private javax.swing.JTextField ItemCodeField;
     private java.awt.Label ItemCodeTitle;
+    private java.awt.Label ItemDescription;
+    private java.awt.TextField ItemDescriptionField;
     private java.awt.Label ItemNameTitle;
-    private java.awt.TextField ItemOrderField;
-    private javax.swing.JLabel ItemOrderTitle;
     private javax.swing.JPanel ListPane;
     private javax.swing.JMenuItem LogOut;
     private javax.swing.JLabel Logo;
@@ -1059,29 +965,17 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextField NameField;
     private javax.swing.JTextField NameResultField;
     private java.awt.Label NameResultTitle;
-    private javax.swing.JLabel NoItem;
-    private java.awt.TextField NoItemOrder;
-    private javax.swing.JLabel NoUnit;
-    private javax.swing.JLabel OrderPrice;
-    private java.awt.TextField OrderPriceField;
-    private javax.swing.JButton OrderingBtn;
-    private javax.swing.JPanel OrderingPane;
     private javax.swing.JLabel PhoneNumber;
     private java.awt.TextField PhoneNumberField;
     private java.awt.TextField PriceAddField;
     private java.awt.Label PriceAddTitle;
     private javax.swing.JTextField PriceResultField;
-    private javax.swing.JLabel ProvideName;
-    private java.awt.TextField ProviderField;
-    private javax.swing.JLabel ProviderID;
-    private java.awt.TextField ProviderIDField;
     private javax.swing.JPanel ProviderPane;
     private javax.swing.JTable ProviderTable;
     private java.awt.Button RecallBtn;
     private javax.swing.JTextField RecallField;
     private javax.swing.JButton ResetCustomerBtn;
     private javax.swing.JButton ResetFieldBtn;
-    private javax.swing.JButton ResetOrder;
     private javax.swing.JLayeredPane ResultPane;
     private javax.swing.JLabel ResultTitle;
     private javax.swing.JButton SearchBtn;
@@ -1104,21 +998,18 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTabbedPane TabbedPane;
     private javax.swing.JLabel Title;
     private javax.swing.JPanel TopPanel;
-    private javax.swing.JLabel TotalPrice;
-    private java.awt.TextField TotalPriceField;
     private javax.swing.JPanel TransactionPane;
     private javax.swing.JComboBox<String> UnitField;
-    private javax.swing.JComboBox<String> UnitOrderField;
     private javax.swing.JTextField UnitResultField;
     private java.awt.Label UnitResultTitle;
     private java.awt.Label UnitTitle;
     private javax.swing.JButton UpdateBtn;
+    private javax.swing.JTable itemDes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private java.awt.Label label4;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,6 +18,7 @@ public class Main {
         LoginView view = new LoginView();
         Model model = new Model();
         new LoginViewController().init(view, model);
+        view.setTitle("Coffee Inventory");
 
         databaseSetup();
 
@@ -30,6 +31,7 @@ public class Main {
         db.CreateTable("Users", "(username VARCHAR(255), password VARCHAR(255))");
         db.CreateTable("Items", "(name VARCHAR(255), code VARCHAR(255), price VARCHAR(255), stock VARCHAR(255), category VARCHAR(255), unit VARCHAR(255))");
         db.CreateTable("Providers", "(surname VARCHAR(255), ID VARCHAR(255), address VARCHAR(255), phone VARCHAR(255), cmpName VARCHAR(255))");
+        db.CreateTable("ItemDescription", "(name VARCHAR(255), description VARCHAR(255))");
         db.Create("Users(username, password)", "\"admin\", \"1234\"");
 
 

@@ -28,6 +28,9 @@ public class Model {
         return searchName;
     }
     
+    
+    
+    
     //String to read a table on database
     public void setreadString(String readString){
         this.readString = readString;
@@ -58,7 +61,7 @@ public class Model {
         this.deleteDataString = deleteDataString;
     }
     public void getdeleteString(){
-        db.Delete(deleteString, deleteColString, deleteDataString);
+        db.DeleteItem(deleteString, deleteColString, deleteDataString);
     }
     
     //String to update a table on database

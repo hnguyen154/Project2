@@ -297,6 +297,56 @@ public class Database {
         }
         return out;
     }
+     
+     public int AddItemDes(String item, String description) throws ClassNotFoundException {
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            System.setProperty("jdbc.drivers", jdbc_drivers);
+            con = DriverManager.getConnection(url, user, password);
+            st = con.createStatement();
+
+
+            /*Create table
+            //example
+                insertString = "INSERT into [table_name] values (.., .., ..);
+             */
+            String sql = "INSERT itemdescription(name, description) VALUES (?,?);";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, item);
+            pst.setString(2, description);
+            pst.executeUpdate();
+//            System.out.println("INSERT INTO " + Table + " VALUES " + "(" + stringData + ");");
+//            out = st.executeUpdate("INSERT INTO " + Table + " VALUES " + "(" + stringData + ");");
+//            System.out.println("Inserted values into table in database...");
+
+        } catch (SQLException ex) {
+            // Logger lgr = Logger.getLogger(Version.class.getName());
+            //lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+                // Logger lgr = Logger.getLogger(Version.class.getName());
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                //lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+        return out;
+    }
     
     
     
@@ -494,7 +544,7 @@ public class Database {
 //    }
     
     // couldn't get a generic delete method working, delete is based on item code
-    public void Delete(String Table, String col, String data) {
+    public void DeleteItem(String Table, String col, String data) {
 
         try {
             System.setProperty("jdbc.drivers", jdbc_drivers);
@@ -504,6 +554,54 @@ public class Database {
 
             //Delete table
             String sql = "DELETE FROM Items WHERE code = ?";
+
+            pst = con.prepareStatement(sql);
+//            pst.setString(1, Table);
+//            pst.setString(2, col);
+            pst.setString(1, data);
+            System.out.println(Table);
+            System.out.println(col);
+            System.out.println(data);
+            pst.executeUpdate();
+
+//            String dropTable = "delete from " + Table + " WHERE " + colu1 + " = " + data1;
+//            st.executeUpdate(dropTable);
+//            System.out.println("Deleted table in database...");
+        } catch (SQLException ex) {
+            // Logger lgr = Logger.getLogger(Version.class.getName());
+            //lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+                // Logger lgr = Logger.getLogger(Version.class.getName());
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                //lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
+    
+    public void DeleteDescription(String Table, String col, String data) {
+
+        try {
+            System.setProperty("jdbc.drivers", jdbc_drivers);
+
+            con = DriverManager.getConnection(url, user, password);
+            st = con.createStatement();
+
+            //Delete table
+            String sql = "DELETE FROM itemdescription WHERE name = ?";
 
             pst = con.prepareStatement(sql);
 //            pst.setString(1, Table);
@@ -687,7 +785,45 @@ public class Database {
         }
     }
     
-    
+     public void updateItemDescriptionTable(View v) throws SQLException {
+        ResultSet s;
+
+        try {
+            System.setProperty("jdbc.drivers", jdbc_drivers);
+
+            con = DriverManager.getConnection(url, user, password);
+            st = con.createStatement();
+
+            String updateTable = "SELECT * FROM itemdescription";
+            s = st.executeQuery(updateTable);
+
+            v.setItemDescriptionTableModel(buildTableModel(s));
+
+        } catch (SQLException ex) {
+            // Logger lgr = Logger.getLogger(Version.class.getName());
+            //lgr.log(Level.SEVERE, ex.getMessage(), ex);
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+
+            } catch (SQLException ex) {
+                // Logger lgr = Logger.getLogger(Version.class.getName());
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+                //lgr.log(Level.WARNING, ex.getMessage(), ex);
+            }
+        }
+    }
 
     public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
 
