@@ -93,6 +93,7 @@ public class ViewController {
                 view.setPriceAddField("");
                 view.setCodeAddField(" ");
                 view.setCodeAddField("");
+                view.setItemDescriptionField("");
                 view.setCategoryField();
                 view.setUnitField();
             }

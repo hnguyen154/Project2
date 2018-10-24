@@ -30,7 +30,7 @@ public class Model {
     
     
     
-    
+  /*  
     //String to read a table on database
     public void setreadString(String readString){
         this.readString = readString;
@@ -75,7 +75,7 @@ public class Model {
     public void getupdateString(){
         db.Update(updateString, updateCol1String, updateData1String, updateCol2String, updateData2String);
     }
-    
+    */
     
     
 }
