@@ -21,12 +21,12 @@ public class Database {
     ResultSet rs = null;
     PreparedStatement pst = null;
 
-    String jdbc_drivers = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/cafe?verifyServerCertificate=false&useSSL=true";
+    //String jdbc_drivers = "com.mysql.jdbc.Driver";
+    String url = "jdbc:sqlite:cafe.db";
 
     //User login
-    String user = "root";
-    String password = "abcd";
+//    String user = "root";
+//    String password = "abcd";
 
     public Database() {
 
@@ -35,9 +35,9 @@ public class Database {
     public boolean loginValid(String username, String pass) {
         boolean valid = false;
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             //Example
@@ -89,9 +89,9 @@ public class Database {
     public ArrayList Read(String Table) {
 
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             //Example
@@ -145,10 +145,10 @@ public class Database {
 
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("com.mysql.cj.jdbc.Driver");
 
-            System.setProperty("jdbc.drivers", jdbc_drivers);
-            con = DriverManager.getConnection(url, user, password);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
 
@@ -195,10 +195,10 @@ public class Database {
 
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("com.mysql.cj.jdbc.Driver");
 
-            System.setProperty("jdbc.drivers", jdbc_drivers);
-            con = DriverManager.getConnection(url, user, password);
+           // System.setProperty("jdbc.drivers", jdbc_drivers);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
 
@@ -229,9 +229,6 @@ public class Database {
                 if (rs != null) {
                     rs.close();
                 }
-                if (st != null) {
-                    st.close();
-                }
                 if (con != null) {
                     con.close();
                 }
@@ -249,10 +246,10 @@ public class Database {
 
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("com.mysql.cj.jdbc.Driver");
 
-            System.setProperty("jdbc.drivers", jdbc_drivers);
-            con = DriverManager.getConnection(url, user, password);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
 
@@ -260,7 +257,7 @@ public class Database {
             //example
                 insertString = "INSERT into [table_name] values (.., .., ..);
              */
-            String sql = "INSERT Providers(surname, ID, address, phone, cmpName) VALUES (?,?,?,?,?);";
+            String sql = "INSERT INTO Providers(surname, ID, address, phone, cmpName) VALUES (?,?,?,?,?);";
             pst = con.prepareStatement(sql);
             pst.setString(1, surname);
             pst.setString(2, ID);
@@ -302,10 +299,10 @@ public class Database {
 
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("com.mysql.cj.jdbc.Driver");
 
-            System.setProperty("jdbc.drivers", jdbc_drivers);
-            con = DriverManager.getConnection(url, user, password);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
 
@@ -313,7 +310,7 @@ public class Database {
             //example
                 insertString = "INSERT into [table_name] values (.., .., ..);
              */
-            String sql = "INSERT itemdescription(name, description) VALUES (?,?);";
+            String sql = "INSERT INTO Itemdescription(name, description) VALUES (?,?);";
             pst = con.prepareStatement(sql);
             pst.setString(1, item);
             pst.setString(2, description);
@@ -332,9 +329,9 @@ public class Database {
                 if (rs != null) {
                     rs.close();
                 }
-                if (st != null) {
-                    st.close();
-                }
+//                if (st != null) {
+//                    st.close();
+//                }
                 if (con != null) {
                     con.close();
                 }
@@ -357,10 +354,10 @@ public class Database {
 
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+           // Class.forName("com.mysql.cj.jdbc.Driver");
 
-            System.setProperty("jdbc.drivers", jdbc_drivers);
-            con = DriverManager.getConnection(url, user, password);
+           // System.setProperty("jdbc.drivers", jdbc_drivers);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             /*Create table
@@ -401,9 +398,9 @@ public class Database {
 
     public void SearchName(View v, String name) {
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+           // System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             //Example
@@ -453,9 +450,9 @@ public class Database {
     
     public void SearchCode(View v, String name) {
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             //Example
@@ -547,9 +544,9 @@ public class Database {
     public void DeleteItem(String Table, String col, String data) {
 
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+           // System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             //Delete table
@@ -595,9 +592,9 @@ public class Database {
     public void DeleteDescription(String Table, String col, String data) {
 
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             //Delete table
@@ -644,9 +641,9 @@ public class Database {
     public void Update(String Table, String colu1, String data1, String colu2, String data2) {
 
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+           // System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             String updateTable = "UPDATE " + Table + " SET " + colu1 + " = " + data1 + " WHERE " + colu2 + " = " + data2 + ";";
@@ -708,9 +705,9 @@ public class Database {
     public void updateInventoryTable(View v) throws SQLException {
         ResultSet s;
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             String updateTable = "SELECT * FROM Items";
@@ -749,9 +746,9 @@ public class Database {
         ResultSet s;
 
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             String updateTable = "SELECT * FROM Providers";
@@ -789,9 +786,9 @@ public class Database {
         ResultSet s;
 
         try {
-            System.setProperty("jdbc.drivers", jdbc_drivers);
+           // System.setProperty("jdbc.drivers", jdbc_drivers);
 
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             st = con.createStatement();
 
             String updateTable = "SELECT * FROM itemdescription";
